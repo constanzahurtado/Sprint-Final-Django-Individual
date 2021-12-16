@@ -1,0 +1,17 @@
+{% extends 'calculadora_nutricional/layout.html' %}
+{% block content %}
+
+<h3>Comentarios</h3>
+<hr width=800>  
+
+    {% for comentario in data %}
+    <p>Nombre: {{comentario.nombre_comentario}}</p>
+    <p>{{comentario.comentario}}</p>
+    <hr width=800>   
+    
+    {% endfor %}
+
+
+
+
+{% endblock %}

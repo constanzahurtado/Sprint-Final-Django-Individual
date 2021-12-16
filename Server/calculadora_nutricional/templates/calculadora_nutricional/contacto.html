@@ -1,0 +1,17 @@
+{% extends 'calculadora_nutricional/layout.html' %}
+{% block content %}
+
+<div class="container-fluid mt-3">
+    <h3 class="center-title">Contáctanos</h3>
+    <p class="center-paragraph">Complete todos los campos del formulario. Nos pondremos en contacto lo antes posible.</p>
+    <br>
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="form-group">
+    {{form.as_p}}
+    </div>
+    <button class="boton">Enviar</button>
+</form>
+
+{% endblock %}
