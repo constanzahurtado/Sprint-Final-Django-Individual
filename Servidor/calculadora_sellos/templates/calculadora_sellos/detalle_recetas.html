@@ -1,0 +1,75 @@
+{% extends 'calculadora_sellos/layout_usuario.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="container">
+ 
+<h4>{{ detalle.nombre_receta}} {% if detalle.get_editar_url %}<small><br><a href="{{ detalle.get_editar_url }}">Editar</a></small><br><small><a href="eliminar">Eliminar</a></small>{% endif %}</h4>
+
+<li>Porciones: {{ detalle.porcion}}</li>
+<li>Fecha de Creación: {{ detalle.fecha}}</li>
+<hr>
+<h4>Ingredientes</h4>
+{% for ingrediente in detalle.get_ingrediente_hijos %}
+
+<br>
+<section>
+<div class="container">
+<div class="row row-cols-2">
+  <div class="col">
+      <h4>Ingrediente</h4>
+      <li>Nombre ingrediente: {{ingrediente.nombre_ingrediente}}</li>
+      <li>Cantidad: {{ingrediente.cantidad}}</li>
+  </div>
+  <div class="col">
+      <h4>Nutrientes</h4>
+      <li>Calorias: {{ingrediente.calorias}}</li>
+      <li>Sodio: {{ingrediente.sodio}}</li>
+      <li>Azúcares: {{ingrediente.azucares}}</li>
+      <li>Grasas: {{ingrediente.grasas}}</li>   
+  </div>
+</div>
+<hr>
+</div>
+{% endfor %}
+</section>
+<section>
+<h4>Resultado</h4>
+
+<div class="container">
+    <table style="width:100%">
+        <tr>
+          <th>Nutriente</th>
+          <th>Cantidad</th> 
+          <th>Unidad</th>
+          <td>Sellos</td>
+        </tr>
+        <tr>
+          <td>Calorías</td>
+          <td>{{ total_calorias|floatformat:1 }}</td>
+          <td>kcal/100g</td>
+          <td>{% if total_calorias > 257 %} Requiere Sello Alto en Calorías {% else %} No requiere sello {% endif %}</td>
+        </tr>
+        <tr>
+          <td>Azúcares</td>
+          <td>{{ total_azucares|floatformat:1 }}</td>
+          <td>g/100g</td>
+          <td>{% if total_azucares > 10 %} Requiere Sello Alto en Azúcares {% else %} No requiere sello {% endif %}</td>
+        </tr>
+        <tr>
+          <td>Grasas Saturadas</td>
+          <td>{{ total_grasas|floatformat:1 }}</td>
+          <td>g/100g</td>
+          <td>{% if total_grasas > 4 %} Requiere Sello Alto en Azúcares {% else %} No requiere sello {% endif %}</td>
+        </tr>
+          <tr>
+          <td>Sodio</td>
+          <td>{{ total_sodio|floatformat:1 }}</td>
+          <td>mg/100g</td>
+          <td>{% if total_sodio > 400 %} Requiere Sello Alto en Azúcares {% else %} No requiere sello {% endif %}</td>
+        </tr>
+      </table>
+</div>
+</section>
+<br>
+{% endblock %}

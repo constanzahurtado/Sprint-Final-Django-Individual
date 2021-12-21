@@ -1,0 +1,14 @@
+{% extends 'calculadora_sellos/layout_usuario.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+<h3>Lista de Recetas</h3>
+<a href = "{% url 'calculadora_sellos:crear' %}">Nueva Receta</a>
+<hr>
+<br>
+{% for objeto in lista %}
+<li><a href ="{{ objeto.get_absolute_url }}"> {{ objeto.nombre_receta }}</a></li>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+#cerrar_sesion{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.hidden{
+    display: none;
+}
+ 
+  .center-title{
+    text-align: center;
+}
+  
+  .center-paragraph{
+  text-align: center;
+}
+
+  table, th, td {
+    border: 1px solid rgb(175, 173, 173);
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#enviar{
+  margin-left: 110px;
+}

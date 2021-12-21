@@ -1,9 +1,0 @@
-<form method="post">
-    {{ formset.management_form }}
-    {% for form in formset %}
-        <ul>
-            <li>{{ form.title }}</li>
-            <li>{{ form.pub_date }}</li>
-        </ul>
-    {% endfor %}
-</form>

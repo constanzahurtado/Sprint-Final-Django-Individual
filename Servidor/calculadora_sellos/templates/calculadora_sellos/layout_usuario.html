@@ -1,0 +1,38 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/estilo_usuario.css' %}">
+    <title>Usuario</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <div class="row row-cols-2">
+            <div class="col"><h3>Bienvenid@ {{ request.user.username }}</h3></div>
+            <div class="col" id ="cerrar_sesion"><a href = "/cerrar_sesion">Cerrar Sesión</a></div>
+          </div>
+            <br>
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="{% url 'calculadora_sellos:lista' %}">Mis Recetas</a></li>
+              <li><a href="{% url 'calculadora_sellos:crear' %}">Nueva Receta</a></li>
+              <li><a href="">Guía Calculadora</a></li>
+            </ul>
+            <br>
+            </div>
+        
+      </header>
+    {% block content %}
+ 
+    {% endblock %}
+    <footer></footer>
+</body>
+</html>

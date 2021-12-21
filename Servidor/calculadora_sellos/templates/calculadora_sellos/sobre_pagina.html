@@ -1,0 +1,20 @@
+{% extends 'calculadora_sellos/layout.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-sm-12">
+<h3>Sobre esta página</h3>
+<p> Esta página fue creada con el propósito de disponer de una Calculadora que permita estimar la cantidad de los 
+    principales nutrientes que exige la Ley de Etiquetado y, en base a los resultados, indicar a la 
+    persona si el producto requiere de "Discos Pares" o no en su envase como indica el Minsal, y ayudar a 
+    micro productores con este proceso.</p>
+
+ <p>Esta herramienta se basa en la metodología propuesta por el "Manual de Etiquetado Nutricional de Alimentos" 
+    otorgado por el MINSAL:<a href="https://www.minsal.cl/wp-content/uploads/2018/01/Manual-Etiquetado-Nutricional-Ed.-Minsal-2017v2.pdf">Manual
+   de Etiquetado Nutricional de Alimentos</a></p>
+
+   <hr width=800>
+   <img src="{% static 'img/Sellos.png' %}" alt="imagen_sellos" class="imagenindex">
+</div>
+
+{% endblock %}

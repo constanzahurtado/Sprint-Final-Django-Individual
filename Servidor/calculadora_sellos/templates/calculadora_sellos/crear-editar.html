@@ -1,0 +1,71 @@
+{% extends 'calculadora_sellos/layout_usuario.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+{% if mensaje %}
+
+<p>{{ mensaje }}</p>
+{% endif %}
+<div class="container">
+<div style ='margin-top: 30px;'>
+    <form action ="" method="POST" class="form">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-12 mb-0"><h3>Nueva Receta</h3></div>
+            <div class="form-group col-md-6 mb-0">
+              {{ form.nombre_receta|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ form.porcion|as_crispy_field }}
+            </div>
+          </div>
+
+        {% if formset %}
+        <h3>Ingredientes</h3>
+        {{ formset.management_form|crispy }}
+        <div id="ingrediente-form-list">
+        {% for form in formset %}
+            <div class="ingrediente-form">
+                {{ form|crispy}}
+                <hr style="height:5px;border:none;color:rgb(84, 142, 230);background-color:rgb(84, 142, 230);">
+            </div>
+        {% endfor %}
+        </div>
+        <div id='empty-form' class='hidden'>
+            {{ formset.empty_form|crispy }}
+            
+        </div>
+        <button style='margin-top: 20px;' id ="add-more" type="button" class="btn btn-primary">Agregar</button>
+
+        {% endif %}
+        <button style='margin-top: 20px;' type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+</div>
+<script>
+    const addMoreBtn = document.getElementById('add-more')
+    const totalNewForms = document.getElementById('id_form-TOTAL_FORMS')
+    addMoreBtn.addEventListener('click', add_new_form)
+
+    function add_new_form(event){
+        if(event){
+            event.preventDefault()
+        }
+        const currentIngredientForms = document.getElementsByClassName('ingrediente-form')
+        const currenFormCount=currentIngredientForms.length
+        const formCopyTarget = document.getElementById('ingrediente-form-list')
+        const copyEmptyFormEl = document.getElementById('empty-form').cloneNode(true)
+        copyEmptyFormEl.setAttribute('class', 'ingrediente-form') 
+        copyEmptyFormEl.setAttribute('id', `form-${currenFormCount}`) 
+        const regex = new RegExp('__prefix__', 'g')
+        copyEmptyFormEl.innerHTML = copyEmptyFormEl.innerHTML.replace(regex, currenFormCount)
+        totalNewForms.setAttribute('value', currenFormCount + 1)
+        
+        formCopyTarget.append(copyEmptyFormEl)
+    }
+
+</script>
+
+{% endblock %}
